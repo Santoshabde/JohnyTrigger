@@ -30,9 +30,9 @@ namespace SNGames.JonnyTriggerProto
             characterStateController.CharacterController.Move(new Vector3(0, -deltaTime * characterStateController.CharacterGravityForceActing, deltaTime * characterStateController.CharacterRunSpeed));
         }
 
-        private void OnZoneEnter(ZoneManager currentZone, ZoneDataOutput zoneDataOutput)
+        private void OnZoneEnter(ZoneManager currentZone)
         {
-            characterStateController.SwitchState(new CharacterState_BattleMode(characterStateController, currentZone, zoneDataOutput));
+            characterStateController.SwitchState(new CharacterState_BattleMode(characterStateController, currentZone));
         }
     }
 }

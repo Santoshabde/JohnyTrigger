@@ -16,24 +16,23 @@ namespace SNGames.JonnyTriggerProto
 
         public static Action<bool, Vector3, Vector3> OnDecideCharacterShootFunctionality;
 
-        public CharacterState_BattleMode(CharacterStateController characterStateController, ZoneManager currentZone, ZoneDataOutput zoneDataOutput)
+        public CharacterState_BattleMode(CharacterStateController characterStateController, ZoneManager currentZone)
         {
             this.characterStateController = characterStateController;
-            this.zoneDataOutput = zoneDataOutput;
             this.currentZone = currentZone;
+
+            zoneDataOutput = currentZone.GetCurrentZoneData();
         }
 
         public override void Enter()
         {
-            characterStateController.CharacterAnimator.CrossFade("Flip", 0.1f);
-
             if (jumpCurveCoroutine != null) characterStateController.StopCoroutine(jumpCurveCoroutine);
             jumpCurveCoroutine = characterStateController.StartCoroutine(PlayJumpCurveAnimation());
         }
 
         public override void Exit()
         {
-            if (jumpCurveCoroutine != null) 
+            if (jumpCurveCoroutine != null)
                 characterStateController.StopCoroutine(jumpCurveCoroutine);
 
             characterStateController.lefthandChainIkContraint.weight = 0;
@@ -41,19 +40,28 @@ namespace SNGames.JonnyTriggerProto
         }
 
         public override void Tick(float deltaTime)
-        {   
-          
+        {
+
         }
 
         float jumpCurveEvalutationTime = 0;
         private IEnumerator PlayJumpCurveAnimation()
         {
-            //Wait for some initial buffer time
-            yield return new WaitForSeconds(zoneDataOutput.initialWaitTimeBeforeSlowing);
-
             jumpCurveEvalutationTime = 0;
             Vector3 finalPosition = zoneDataOutput.zoneJumpPathSpline.EvaluatePosition(0);
 
+            //Wait for character to reach eval(0) jump curve position
+            while ((characterStateController.transform.position - finalPosition).magnitude > 0.1f)
+            {
+                characterStateController.transform.position = Vector3.MoveTowards(characterStateController.transform.position, finalPosition, Time.deltaTime);
+                yield return null;
+            }
+
+            characterStateController.CharacterAnimator.CrossFade("Flip", 0.3f);
+
+            //Wait for some initial buffer time
+            yield return new WaitForSeconds(zoneDataOutput.initialWaitTimeBeforeSlowing);
+   
             //Tween the time scale from 1 to desired value
             Time.timeScale = zoneDataOutput.jumpSlowMotionTimeScale;
 
@@ -82,6 +90,7 @@ namespace SNGames.JonnyTriggerProto
                     OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
                 }
 
+                Debug.Log("Came here: " + (characterStateController.transform.position - finalPosition).magnitude);
                 if ((characterStateController.transform.position - finalPosition).magnitude < 0.1f)
                 {
                     jumpCurveEvalutationTime += Time.deltaTime * zoneDataOutput.jumpCurveSpeed;
@@ -89,7 +98,7 @@ namespace SNGames.JonnyTriggerProto
 
                 characterStateController.transform.position = Vector3.MoveTowards(characterStateController.transform.position, finalPosition, Time.deltaTime * zoneDataOutput.jumpCurveSpeed);
 
-                if(jumpCurveEvalutationTime >= 0.98f)
+                if (jumpCurveEvalutationTime >= 0.98f)
                 {
                     Time.timeScale = 1;
                     characterStateController.SwitchState(new CharacterState_Run(characterStateController));
@@ -97,6 +106,14 @@ namespace SNGames.JonnyTriggerProto
 
                 yield return null;
             }
+        }
+
+        private float GetCurretCharacterMoveSpeed(Vector3 finalposition)
+        {
+            if (finalposition == (Vector3)zoneDataOutput.zoneJumpPathSpline.EvaluatePosition(0))
+                return 15f;
+
+            return zoneDataOutput.jumpCurveSpeed;
         }
     }
 }

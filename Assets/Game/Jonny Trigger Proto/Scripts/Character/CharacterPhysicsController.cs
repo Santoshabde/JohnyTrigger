@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterPhysicsController : MonoBehaviour
 {
-    public static Action<ZoneManager,ZoneDataOutput> OnEnterZone;
+    public static Action<ZoneManager> OnEnterZone;
     public static Action<ZoneManager> OnExitZone;
 
     private void OnTriggerEnter(Collider other)
@@ -16,7 +16,7 @@ public class CharacterPhysicsController : MonoBehaviour
         {
             ZoneManager currentZoneManager = zoneEnterArea.GetCurrentZonesManager();
 
-            OnEnterZone?.Invoke(currentZoneManager, currentZoneManager.GetCurrentZoneData());
+            OnEnterZone?.Invoke(currentZoneManager);
         }
 
         ZoneExitArea zoneExitArea = other.GetComponent<ZoneExitArea>();
