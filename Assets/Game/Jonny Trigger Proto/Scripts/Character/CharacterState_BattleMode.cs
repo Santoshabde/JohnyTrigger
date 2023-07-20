@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SNGames.CommonModule;
 using System;
+using DG.Tweening;
 
 namespace SNGames.JonnyTriggerProto
 {
@@ -47,13 +48,16 @@ namespace SNGames.JonnyTriggerProto
         float jumpCurveEvalutationTime = 0;
         private IEnumerator PlayJumpCurveAnimation()
         {
+            //Wait for some initial buffer time
             yield return new WaitForSeconds(zoneDataOutput.initialWaitTimeBeforeSlowing);
 
             jumpCurveEvalutationTime = 0;
             Vector3 finalPosition = zoneDataOutput.zoneJumpPathSpline.EvaluatePosition(0);
 
+            //Tween the time scale from 1 to desired value
             Time.timeScale = zoneDataOutput.jumpSlowMotionTimeScale;
 
+            //Activating zone - moving toAim curve here
             currentZone.ActivateZone();
 
             characterStateController.lefthandChainIkContraint.weight = 1;
