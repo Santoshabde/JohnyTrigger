@@ -50,6 +50,8 @@ namespace SNGames.JonnyTriggerProto
             jumpCurveEvalutationTime = 0;
             Vector3 finalPosition = zoneDataOutput.zoneJumpPathSpline.EvaluatePosition(0);
 
+            characterStateController.CharacterAnimator.CrossFade("StartingFlip", 0.1f);
+
             //Wait for character to reach eval(0) jump curve position
             while ((characterStateController.transform.position - finalPosition).magnitude > 0.1f)
             {

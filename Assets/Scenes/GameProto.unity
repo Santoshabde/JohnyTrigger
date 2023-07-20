@@ -844,6 +844,16 @@ PrefabInstance:
       propertyPath: m_Splines.Array.data[0].m_MetaData.Array.data[2].m_DistanceToInterpolation.Array.data[29].Distance
       value: 0.0000026233024
       objectReference: {fileID: 0}
+    - target: {fileID: 3407991115018364260, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407991115018364260, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.388
+      objectReference: {fileID: 0}
     - target: {fileID: 3821566579390265431, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Position.y
@@ -1217,7 +1227,7 @@ PrefabInstance:
     - target: {fileID: 3889496985797144989, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.163
+      value: 0.253
       objectReference: {fileID: 0}
     - target: {fileID: 4834950941634610531, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
