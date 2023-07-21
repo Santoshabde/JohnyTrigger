@@ -66,6 +66,10 @@ namespace SNGames.JonnyTriggerProto
    
             //Tween the time scale from 1 to desired value
             Time.timeScale = zoneDataOutput.jumpSlowMotionTimeScale;
+            Debug.Log("B4: " + Time.fixedDeltaTime);
+            Time.fixedDeltaTime = 0.003f;
+            Physics.gravity = Physics.gravity * 10f;
+            Debug.Log("After: " + Time.fixedDeltaTime);
 
             //Activating zone - moving toAim curve here
             currentZone.ActivateZone();
@@ -102,6 +106,8 @@ namespace SNGames.JonnyTriggerProto
                 if (jumpCurveEvalutationTime >= 0.98f)
                 {
                     Time.timeScale = 1;
+                    Time.fixedDeltaTime = 0.02f;
+                    Physics.gravity = new Vector3(0,-9.8f, 0);
                     characterStateController.SwitchState(new CharacterState_Run(characterStateController));
                 }
 

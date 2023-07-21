@@ -16,6 +16,7 @@ namespace SNGames.JonnyTriggerProto
 
     public class BaseEnemy : MonoBehaviour, IDamagable
     {
+        [SerializeField] protected Animator animtor;
         [SerializeField] protected MultiAimConstraint headMultiAimConstraint;
         [SerializeField] protected Transform headIKTarget;
         [SerializeField] protected Transform rightHand;
@@ -30,9 +31,11 @@ namespace SNGames.JonnyTriggerProto
             DisableRagDoll();
         }
 
-        public virtual void OnDamage(float damageAmount, Vector3 damageDirection)
+        public virtual void OnDamage(Rigidbody rigidBodyHit, float damageAmount, Vector3 damageDirection)
         {
-            
+            animtor.enabled = false;
+            EnableRagDoll();
+            rigidBodyHit.AddForce(damageDirection * 10f, ForceMode.Impulse);
         }
 
         public virtual void OnCharacterEnteredTheZone(CharacterStateController characterInZone)
@@ -57,7 +60,7 @@ namespace SNGames.JonnyTriggerProto
         {
             foreach (var item in transform.GetComponentsInChildren<Rigidbody>())
             {
-                item.isKinematic = true;
+                item.isKinematic = false;
             }
         }
     }

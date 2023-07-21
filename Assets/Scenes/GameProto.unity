@@ -2035,6 +2035,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bb079ca5130a546a3b93f920bdb7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &919132148100900451 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 510782158322651663, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1102784738930419344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1082271959650387204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8977484322333753658, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
@@ -2054,10 +2060,15 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 16f213d293fdf124e81e1b35159d8823, type: 3}
+    - target: {fileID: 3505517436464584268, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
+        type: 3}
+      propertyPath: animtor
+      value: 
+      objectReference: {fileID: 919132148100900451}
     - target: {fileID: 8318912774463910181, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.146
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8318912774463910181, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
         type: 3}
@@ -2278,7 +2289,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!144 &3135921507972092197
@@ -2406,7 +2417,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!65 &5465940245428837491
@@ -2500,7 +2511,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!136 &5477181765004629463
@@ -2565,7 +2576,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!144 &6000407480575640589
@@ -2713,7 +2724,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!136 &7151331951658384854
@@ -2904,7 +2915,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!136 &7410462539921565178
@@ -3028,8 +3039,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.31632942
-  m_Center: {x: -0.0000008956521, y: 0.27491418, z: 0.07185651}
+  m_Radius: 0.41199377
+  m_Center: {x: -0.00000090018375, y: 0.17713822, z: 0.00017023455}
 --- !u!54 &8169382869726112591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3054,7 +3065,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!144 &8169382869726112592
@@ -3198,7 +3209,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!144 &8817898887164980879
@@ -3346,7 +3357,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!136 &8932621592465073396
@@ -3402,7 +3413,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!144 &9019515342376531723

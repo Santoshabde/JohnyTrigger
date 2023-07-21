@@ -15,10 +15,11 @@ namespace SNGames.JonnyTriggerProto
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Collided with: " + other.name);
             IDamagable damagableComponent = other.GetComponentInParent<IDamagable>();
             if (damagableComponent != null)
             {
-                damagableComponent.OnDamage(other.GetComponent<Rigidbody>(), 10f, transform.forward);
+                damagableComponent.OnDamage(other.GetComponent<Rigidbody>(), 0.01f, transform.forward);
             }
         }
     }
