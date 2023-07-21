@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoneExitArea : ZoneArea
+namespace SNGames.JonnyTriggerProto
 {
-    
+    public class ZoneExitArea : ZoneArea
+    {
+
+    }
 }

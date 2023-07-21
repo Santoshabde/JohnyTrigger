@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunBulletSpawnPoint: {fileID: 9216039505253279254}
+  bullet: {fileID: -7906203820547763145, guid: 00a01c0b7750789479d988f37c841933, type: 3}
 --- !u!1 &8305576048674507728
 GameObject:
   m_ObjectHideFlags: 0

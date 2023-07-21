@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SNGames.JonnyTriggerProto
 {
-    public class ZoneEnterArea : ZoneArea
+    public class PistolVariantA : BaseGun
     {
 
     }

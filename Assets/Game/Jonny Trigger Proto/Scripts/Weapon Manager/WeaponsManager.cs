@@ -1,3 +1,4 @@
+using SNGames.CommonModule;
 using SNGames.JonnyTriggerProto;
 using System;
 using System.Collections;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace SNGames.JonnyTriggerProto
 {
-    public class WeaponsManager : MonoBehaviour
+    public class WeaponsManager : MonoBehaviour, IObserverOfSubject<InputData>
     {
         [SerializeField] private string initialGunToSpawn;
         [SerializeField] private LineRenderer aimLineRenderer;
@@ -21,9 +22,11 @@ namespace SNGames.JonnyTriggerProto
         private void Start()
         {
             CharacterState_BattleMode.OnDecideCharacterShootFunctionality += OnDecideCharacterShootFunctionality;
+            InputController.AddOberver(this);
 
             SpawnGun(initialGunToSpawn);
         }
+
 
         private void OnDecideCharacterShootFunctionality(bool shoudEnable, Vector3 startingPosition, Vector3 finalPosition)
         {
@@ -76,14 +79,25 @@ namespace SNGames.JonnyTriggerProto
             {
                 Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
 
-                currentGun_RH.transform.rotation = Quaternion.LookRotation(gunDirectionToFace, Vector3.forward);
-                currentGun_LH.transform.rotation = Quaternion.LookRotation(gunDirectionToFace, Vector3.forward);
+                currentGun_RH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), Time.deltaTime);
+                currentGun_LH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), Time.deltaTime);
             }
         }
 
         private void OnDestroy()
         {
             CharacterState_BattleMode.OnDecideCharacterShootFunctionality -= OnDecideCharacterShootFunctionality;
+        }
+
+        public void OnNotify(InputData data)
+        {
+            if(isShootFunctionalityEnabled)
+            {
+                Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
+
+                //currentGun_LH.OnShoot(gunDirectionToFace);
+                currentGun_RH.OnShoot(gunDirectionToFace);
+            }
         }
     }
 

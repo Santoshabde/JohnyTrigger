@@ -92,7 +92,6 @@ namespace SNGames.JonnyTriggerProto
                     OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
                 }
 
-                Debug.Log("Came here: " + (characterStateController.transform.position - finalPosition).magnitude);
                 if ((characterStateController.transform.position - finalPosition).magnitude < 0.1f)
                 {
                     jumpCurveEvalutationTime += Time.deltaTime * zoneDataOutput.jumpCurveSpeed;

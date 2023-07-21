@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SNGames.CommonModule
 {
-    public interface IObserver<T>
+    public interface IObserverOfSubject<T>
     {
         public void OnNotify(T data);
     }

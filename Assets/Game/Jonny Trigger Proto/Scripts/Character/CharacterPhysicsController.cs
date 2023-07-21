@@ -3,27 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterPhysicsController : MonoBehaviour
+namespace SNGames.JonnyTriggerProto
 {
-    public static Action<ZoneManager> OnEnterZone;
-    public static Action<ZoneManager> OnExitZone;
-
-    private void OnTriggerEnter(Collider other)
+    public class CharacterPhysicsController : MonoBehaviour
     {
-        Debug.Log(other.name);
-        ZoneEnterArea zoneEnterArea = other.GetComponent<ZoneEnterArea>();
-        if (zoneEnterArea != null)
-        {
-            ZoneManager currentZoneManager = zoneEnterArea.GetCurrentZonesManager();
+        [SerializeField] private CharacterStateController characterStateController;
 
-            OnEnterZone?.Invoke(currentZoneManager);
-        }
+        public static Action<ZoneManager> OnEnterZone;
+        public static Action<ZoneManager> OnExitZone;
 
-        ZoneExitArea zoneExitArea = other.GetComponent<ZoneExitArea>();
-        if (zoneExitArea != null)
+        private void OnTriggerEnter(Collider other)
         {
-            ZoneManager currentZoneManager = zoneExitArea.GetCurrentZonesManager();
-            OnExitZone?.Invoke(currentZoneManager);
+            ZoneEnterArea zoneEnterArea = other.GetComponent<ZoneEnterArea>();
+            if (zoneEnterArea != null)
+            {
+                ZoneManager currentZoneManager = zoneEnterArea.GetCurrentZonesManagerAndSetData();
+                currentZoneManager.OnCharacterEnterInZone(characterStateController);
+
+                OnEnterZone?.Invoke(currentZoneManager);
+            }
+
+            ZoneExitArea zoneExitArea = other.GetComponent<ZoneExitArea>();
+            if (zoneExitArea != null)
+            {
+                ZoneManager currentZoneManager = zoneExitArea.GetCurrentZonesManagerAndSetData();
+                currentZoneManager.OnCharacterExitInZone(characterStateController);
+
+                OnExitZone?.Invoke(currentZoneManager);
+            }
         }
     }
 }

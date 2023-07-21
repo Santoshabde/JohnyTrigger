@@ -6,14 +6,14 @@ namespace SNGames.CommonModule
 {
     public abstract class Subject<T> : MonoBehaviour
     {
-        private static List<IObserver<T>> observers = new List<IObserver<T>>();
+        private static List<IObserverOfSubject<T>> observers = new List<IObserverOfSubject<T>>();
 
-        public static void AddOberver(IObserver<T> observer)
+        public static void AddOberver(IObserverOfSubject<T> observer)
         {
             observers.Add(observer);
         }
 
-        public static void RemoveObserver(IObserver<T> observer)
+        public static void RemoveObserver(IObserverOfSubject<T> observer)
         {
             observers.Remove(observer);
         }
