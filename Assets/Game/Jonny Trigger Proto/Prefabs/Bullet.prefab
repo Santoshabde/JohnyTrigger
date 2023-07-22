@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b18845044b51d4d97348dbb7a7f2be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 50
+  bulletSpeed: 150
 --- !u!96 &2063492599301014287
 TrailRenderer:
   serializedVersion: 3
@@ -173,7 +173,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.09796076
+        value: 0.07462743
         inSlope: 0
         outSlope: 0
         tangentMode: 0
