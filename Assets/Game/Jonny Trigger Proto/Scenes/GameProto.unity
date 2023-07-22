@@ -1988,6 +1988,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7248886924683675883, guid: 8e0e9922fd4ece940994d0537e22e05a,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.06
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2068,7 +2073,7 @@ PrefabInstance:
     - target: {fileID: 8318912774463910181, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.276
+      value: 0.124
       objectReference: {fileID: 0}
     - target: {fileID: 8318912774463910181, guid: 7f1b99057a3e5ef4a854c3ee2129be0f,
         type: 3}
@@ -2273,9 +2278,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3135921507972092195}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2401,9 +2406,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082271959650387204}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2495,9 +2500,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890665110320674374}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2560,9 +2565,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152878827815983432}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2708,9 +2713,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3052746999833532686}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2899,9 +2904,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3948933246505012805}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3001,9 +3006,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7442015437538220138}
   serializedVersion: 4
-  m_Mass: 30
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3049,9 +3054,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6136935972017811333}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3193,9 +3198,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817898887164980877}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3341,9 +3346,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8932621592465073393}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3397,9 +3402,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9019515342376531721}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 40
   m_Drag: 0.1
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

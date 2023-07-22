@@ -27,7 +27,7 @@ namespace SNGames.JonnyTriggerProto
 
         private void Start()
         {
-            SwitchState(new CharacterState_Run(this));
+            SwitchState(new CharacterState_Run(this, false));
         }
     }
 }
