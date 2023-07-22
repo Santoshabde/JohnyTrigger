@@ -36,6 +36,7 @@ namespace SNGames.JonnyTriggerProto
                 characterStateController.StopCoroutine(jumpCurveCoroutine);
 
             characterStateController.lefthandChainIkContraint.weight = 0;
+
             characterStateController.righthandChainIkContraint.weight = 0;
         }
 
@@ -67,7 +68,7 @@ namespace SNGames.JonnyTriggerProto
             //Tween the time scale from 1 to desired value
             Time.timeScale = zoneDataOutput.jumpSlowMotionTimeScale;
             Debug.Log("B4: " + Time.fixedDeltaTime);
-            Time.fixedDeltaTime = 0.003f;
+            Time.fixedDeltaTime = 0.005f;
             Physics.gravity = Physics.gravity * 10f;
             Debug.Log("After: " + Time.fixedDeltaTime);
 
