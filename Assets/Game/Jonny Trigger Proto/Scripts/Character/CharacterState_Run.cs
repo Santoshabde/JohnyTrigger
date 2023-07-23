@@ -28,7 +28,7 @@ namespace SNGames.JonnyTriggerProto
                     startedRoll = true;
                     characterStateController.CharacterAnimator.CrossFade("Landing2", 0.4f);
 
-                    yield return new WaitForSeconds(0.8f);
+                    yield return new WaitForSeconds(1f);
 
                     startedRoll = false;
                     characterStateController.CharacterAnimator.CrossFade("Run", 0.1f);
