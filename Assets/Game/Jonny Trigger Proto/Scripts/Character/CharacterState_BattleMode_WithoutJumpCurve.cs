@@ -75,6 +75,7 @@ namespace SNGames.JonnyTriggerProto
             }
 
             inBattleZone = false;
+
             //characterStateController.lefthandChainIkContraint.weight = 0;
             characterStateController.righthandChainIkContraint.weight = 0;
             characterStateController.headIKConstaint.weight = 0;
