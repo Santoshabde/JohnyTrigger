@@ -26,9 +26,9 @@ namespace SNGames.JonnyTriggerProto
                 IEnumerator RollAndRun()
                 {
                     startedRoll = true;
-                    characterStateController.CharacterAnimator.CrossFade("Landing", 0.4f);
+                    characterStateController.CharacterAnimator.CrossFade("Landing2", 0.4f);
 
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(0.8f);
 
                     startedRoll = false;
                     characterStateController.CharacterAnimator.CrossFade("Run", 0.1f);
@@ -54,7 +54,10 @@ namespace SNGames.JonnyTriggerProto
 
         private void OnZoneEnter(ZoneManager currentZone)
         {
-            characterStateController.SwitchState(new CharacterState_BattleMode(characterStateController, currentZone));
+            if (currentZone.GetCurrentZoneData().zoneJumpPathSpline != null)
+                characterStateController.SwitchState(new CharacterState_BattleMode_WithJumpCurve(characterStateController, currentZone));
+            else
+                characterStateController.SwitchState(new CharacterState_BattleMode_WithoutJumpCurve(characterStateController, currentZone));
         }
 
         private float GetCurrentCharacterSpeed() => startedRoll ? 0f : characterStateController.CharacterRunSpeed;

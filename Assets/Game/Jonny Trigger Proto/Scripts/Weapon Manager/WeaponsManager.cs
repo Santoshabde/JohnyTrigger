@@ -21,7 +21,8 @@ namespace SNGames.JonnyTriggerProto
 
         private void Start()
         {
-            CharacterState_BattleMode.OnDecideCharacterShootFunctionality += OnDecideCharacterShootFunctionality;
+            CharacterState_BattleMode_WithJumpCurve.OnDecideCharacterShootFunctionality += OnDecideCharacterShootFunctionality;
+            CharacterState_BattleMode_WithoutJumpCurve.OnDecideCharacterShootFunctionality += OnDecideCharacterShootFunctionality;
             InputController.AddOberver(this);
 
             SpawnGun(initialGunToSpawn);
@@ -86,7 +87,8 @@ namespace SNGames.JonnyTriggerProto
 
         private void OnDestroy()
         {
-            CharacterState_BattleMode.OnDecideCharacterShootFunctionality -= OnDecideCharacterShootFunctionality;
+            CharacterState_BattleMode_WithJumpCurve.OnDecideCharacterShootFunctionality -= OnDecideCharacterShootFunctionality;
+            CharacterState_BattleMode_WithoutJumpCurve.OnDecideCharacterShootFunctionality -= OnDecideCharacterShootFunctionality;
         }
 
         public void OnNotify(InputData data)
