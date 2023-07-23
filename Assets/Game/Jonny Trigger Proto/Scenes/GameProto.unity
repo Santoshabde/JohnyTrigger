@@ -564,6 +564,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: hasJumpCurve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: enableLeftHandIKToAimCurveTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: enableRightHandIKToAimCurveTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2554479756124929915, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
       propertyPath: m_Name
@@ -1195,6 +1210,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: hasJumpCurve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: fixedDeltaTimeScale
+      value: 0.0009
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: initialWaitTimeBeforeSlowing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: enableLeftHandIKToAimCurveTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: aimCurveEvaluationTimeToEnableAim
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: enableRightHandIKToAimCurveTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: characterMovementSpeedInNoJumpCurveZone
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 19051244469552810, guid: a547eaca23f226a4cb8aa64eb2134f32,
+        type: 3}
+      propertyPath: characterMovementSpeedInNoJumpCurveZoneInSlowMo
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1333803503272071410, guid: a547eaca23f226a4cb8aa64eb2134f32,
         type: 3}
       propertyPath: m_Name

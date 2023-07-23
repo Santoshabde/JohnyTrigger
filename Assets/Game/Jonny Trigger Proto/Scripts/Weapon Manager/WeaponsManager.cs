@@ -80,8 +80,8 @@ namespace SNGames.JonnyTriggerProto
             {
                 Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
 
-                currentGun_RH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), Time.deltaTime);
-                currentGun_LH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), Time.deltaTime);
+                currentGun_RH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
+                currentGun_LH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
             }
         }
 

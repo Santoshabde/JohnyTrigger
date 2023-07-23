@@ -37,7 +37,8 @@ namespace SNGames.JonnyTriggerProto
 
         public override void Tick(float deltaTime)
         {
-            characterStateController.CharacterController.Move(new Vector3(0, -deltaTime * characterStateController.CharacterGravityForceActing,  deltaTime * (inBattleZone? 18f : characterStateController.CharacterRunSpeed)));
+            characterStateController.CharacterController.Move(new Vector3(0, -deltaTime * characterStateController.CharacterGravityForceActing,
+                deltaTime * (inBattleZone ? zoneDataOutput.characterMovementSpeedInNoJumpCurveZoneInSlowMo : characterStateController.CharacterRunSpeed)));
         }
 
         private IEnumerator PlayJumpCurveAnimation()
@@ -45,30 +46,41 @@ namespace SNGames.JonnyTriggerProto
             //Wait for some initial buffer time
             yield return new WaitForSeconds(zoneDataOutput.initialWaitTimeBeforeSlowing);
 
-            //characterStateController.lefthandChainIkContraint.weight = 1;
-            characterStateController.righthandChainIkContraint.weight = 1;
-            characterStateController.headIKConstaint.weight = 1;
+            //Activating zone - moving toAim curve here
+            currentZone.ActivateZone();
 
-            //characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
-            characterStateController.rightHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
-            characterStateController.headIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+            if (zoneDataOutput.enableLeftHandIKToAimCurveTarget)
+            { 
+                characterStateController.lefthandChainIkContraint.weight = 1;
+                characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+            }
+
+            if (zoneDataOutput.enableRightHandIKToAimCurveTarget)
+            {
+                characterStateController.righthandChainIkContraint.weight = 1;
+                characterStateController.rightHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+            }
+
+            if (zoneDataOutput.enableHeadIKToAimCurveTarget)
+            {
+                characterStateController.headIKConstaint.weight = 1;
+                characterStateController.headIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+            }
 
             //Tween the time scale from 1 to desired value
             Time.timeScale = zoneDataOutput.jumpSlowMotionTimeScale;
-            Time.fixedDeltaTime = 0.0009f;
+            Time.fixedDeltaTime = zoneDataOutput.fixedDeltaTimeScale;
             Physics.gravity = Physics.gravity * 40f;
 
-            //Activating zone - moving toAim curve here
-            currentZone.ActivateZone();
             inBattleZone = true;
 
-            while (currentZone.GetCurrentAimCurveEvalutationTime() < 0.80f)
+            while (currentZone.GetCurrentAimCurveEvalutationTime() < 0.98f)
             {
-                //characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+                characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
                 characterStateController.rightHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
                 characterStateController.headIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
 
-                if (currentZone.GetCurrentAimCurveEvalutationTime() > 0.10f)
+                if (currentZone.GetCurrentAimCurveEvalutationTime() > zoneDataOutput.aimCurveEvaluationTimeToEnableAim)
                     OnDecideCharacterShootFunctionality?.Invoke(true, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
 
                 yield return null;
@@ -76,7 +88,7 @@ namespace SNGames.JonnyTriggerProto
 
             inBattleZone = false;
 
-            //characterStateController.lefthandChainIkContraint.weight = 0;
+            characterStateController.lefthandChainIkContraint.weight = 0;
             characterStateController.righthandChainIkContraint.weight = 0;
             characterStateController.headIKConstaint.weight = 0;
 
