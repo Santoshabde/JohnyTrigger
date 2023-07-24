@@ -15,7 +15,7 @@ namespace SNGames.JonnyTriggerProto
         private Coroutine jumpCurveCoroutine;
         private bool inBattleZone = false;
 
-        public static Action<bool, Vector3, Vector3> OnDecideCharacterShootFunctionality;
+        public static Action<bool, Vector3, ZoneManager> OnDecideCharacterShootFunctionality;
 
         public CharacterState_BattleMode_WithoutJumpCurve(CharacterStateController characterStateController, ZoneManager currentZone)
         {
@@ -81,7 +81,7 @@ namespace SNGames.JonnyTriggerProto
                 characterStateController.headIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
 
                 if (currentZone.GetCurrentAimCurveEvalutationTime() > zoneDataOutput.aimCurveEvaluationTimeToEnableAim)
-                    OnDecideCharacterShootFunctionality?.Invoke(true, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
+                    OnDecideCharacterShootFunctionality?.Invoke(true, characterStateController.leftHandTransform.position, currentZone);
 
                 yield return null;
             }
@@ -97,7 +97,7 @@ namespace SNGames.JonnyTriggerProto
             Time.fixedDeltaTime = 0.02f;
             Physics.gravity = new Vector3(0, -9.8f, 0);
 
-            OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
+            OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone);
         }
     }
 }

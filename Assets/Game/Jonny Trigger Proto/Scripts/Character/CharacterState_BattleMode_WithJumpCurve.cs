@@ -14,7 +14,7 @@ namespace SNGames.JonnyTriggerProto
         private ZoneDataOutput zoneDataOutput;
         private Coroutine jumpCurveCoroutine;
 
-        public static Action<bool, Vector3, Vector3> OnDecideCharacterShootFunctionality;
+        public static Action<bool, Vector3, ZoneManager> OnDecideCharacterShootFunctionality;
 
         public CharacterState_BattleMode_WithJumpCurve(CharacterStateController characterStateController, ZoneManager currentZone)
         {
@@ -88,14 +88,14 @@ namespace SNGames.JonnyTriggerProto
                         characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
                         characterStateController.rightHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
 
-                        OnDecideCharacterShootFunctionality?.Invoke(true, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
+                        OnDecideCharacterShootFunctionality?.Invoke(true, characterStateController.leftHandTransform.position, currentZone);
                     }
                     else
                     {
                         characterStateController.lefthandChainIkContraint.weight = Mathf.Lerp(characterStateController.lefthandChainIkContraint.weight, 0, Time.deltaTime * 15f);
                         characterStateController.righthandChainIkContraint.weight = Mathf.Lerp(characterStateController.righthandChainIkContraint.weight, 0, Time.deltaTime * 15f);
 
-                        OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone.GetCurrentAimAtPointOnAimAtCurve());
+                        OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone);
                     }
 
                     if ((characterStateController.transform.position - finalPosition).magnitude < 0.1f)

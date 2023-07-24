@@ -18,6 +18,7 @@ namespace SNGames.JonnyTriggerProto
         private bool isShootFunctionalityEnabled;
         private Vector3 gunAimStartPoint;
         private Vector3 gunAimTargetPoint;
+        private ZoneManager currentZoneCharacterIsIn;
 
         private void Start()
         {
@@ -29,11 +30,12 @@ namespace SNGames.JonnyTriggerProto
         }
 
 
-        private void OnDecideCharacterShootFunctionality(bool shoudEnable, Vector3 startingPosition, Vector3 finalPosition)
+        private void OnDecideCharacterShootFunctionality(bool shoudEnable, Vector3 startingPosition,ZoneManager currentZone)
         {
             isShootFunctionalityEnabled = shoudEnable;
             gunAimStartPoint = startingPosition;
-            gunAimTargetPoint = finalPosition;
+            gunAimTargetPoint = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+            currentZoneCharacterIsIn = currentZone;
 
             if (shoudEnable)
             {
@@ -41,7 +43,7 @@ namespace SNGames.JonnyTriggerProto
                     aimLineRenderer.enabled = true;
 
                 aimLineRenderer.SetPosition(0, startingPosition);
-                aimLineRenderer.SetPosition(1, finalPosition);
+                aimLineRenderer.SetPosition(1, currentZone.GetCurrentAimAtPointOnAimAtCurve());
             }
             else
             {
@@ -80,8 +82,11 @@ namespace SNGames.JonnyTriggerProto
             {
                 Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
 
-                currentGun_RH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
-                currentGun_LH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
+                if (currentZoneCharacterIsIn.GetCurrentZoneData().enableRightHandIKToAimCurveTarget)
+                    currentGun_RH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
+
+                if (currentZoneCharacterIsIn.GetCurrentZoneData().enableLeftHandIKToAimCurveTarget)
+                    currentGun_LH.transform.rotation = Quaternion.Lerp(currentGun_LH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
             }
         }
 
