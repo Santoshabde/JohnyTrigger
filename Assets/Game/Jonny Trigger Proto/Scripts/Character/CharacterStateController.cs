@@ -17,6 +17,7 @@ namespace SNGames.JonnyTriggerProto
         [SerializeField] public MultiAimConstraint headIKConstaint;
         [SerializeField] public Transform headIkTarget;
         [SerializeField] public Transform leftHandTransform;
+        [SerializeField] public Transform rightHandTransform;
 
         //Need to segreagate with configs
         [SerializeField] private float characterRunSpeed;
