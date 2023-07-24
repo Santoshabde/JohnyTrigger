@@ -431,15 +431,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57fc53de3b7f8a459495798f109e9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasJumpCurve: 0
   zoneJumpPathSpline: {fileID: 3821566579390265431}
-  zoneAimPathSpline: {fileID: 3034959624395830151}
   animationToPlay: Flip1
-  jumpSlowMotionTimeScale: 0.07
   jumpCurveSpeed: 17
-  initialWaitTimeBeforeSlowing: 0.2
+  zoneAimPathSpline: {fileID: 3034959624395830151}
   aimAtTransformSpeedOnCurve: 4
+  characterMovementSpeedInNoJumpCurveZoneInSlowMo: 0
+  jumpSlowMotionTimeScale: 0.07
+  fixedDeltaTimeScale: 0
+  initialWaitTimeBeforeSlowing: 0.2
+  aimCurveEvaluationTimeToEnableAim: 0
   enemiesInZone:
   - {fileID: 497226642683736457}
+  enableLeftHandIKToAimCurveTarget: 1
+  enableRightHandIKToAimCurveTarget: 1
+  enableHeadIKToAimCurveTarget: 0
 --- !u!1 &4307699927264522448
 GameObject:
   m_ObjectHideFlags: 0

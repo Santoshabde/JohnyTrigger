@@ -105,7 +105,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344861227030522247}
-  - component: {fileID: 5106756573179737215}
   m_Layer: 0
   m_Name: PistolGunTransform_LH
   m_TagString: Untagged
@@ -128,20 +127,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6909062708374507482}
   m_LocalEulerAnglesHint: {x: -63.226, y: -52.612, z: -49.966}
---- !u!114 &5106756573179737215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653849666156693054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c37b3d59a2ef7747bac6c84d7ee0c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunBulletSpawnPoint: {fileID: 0}
-  bullet: {fileID: 0}
 --- !u!1 &1359463277758069574
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Data:
     m_ConstrainedObject: {fileID: 7883697938264983521}
     m_SourceObjects:
@@ -832,7 +817,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8576797457822477268}
-  - component: {fileID: 928897906238897204}
   m_Layer: 0
   m_Name: PistolGunTransform_RH
   m_TagString: Untagged
@@ -855,20 +839,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5800344194312850760}
   m_LocalEulerAnglesHint: {x: -31.386, y: 44.181, z: 19.56}
---- !u!114 &928897906238897204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5206674130538582616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c37b3d59a2ef7747bac6c84d7ee0c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunBulletSpawnPoint: {fileID: 0}
-  bullet: {fileID: 0}
 --- !u!1 &5208132654653735093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1001,8 @@ MonoBehaviour:
   leftHandChainIkTarget: {fileID: 2813027308321961700}
   righthandChainIkContraint: {fileID: 8829392268137981875}
   rightHandChainIkTarget: {fileID: 3261245475818449344}
+  headIKConstaint: {fileID: 2233668638197206307}
+  headIkTarget: {fileID: 4434609754099474772}
   leftHandTransform: {fileID: 6909062708374507482}
   characterRunSpeed: 5
   characterGravityForceActing: 8

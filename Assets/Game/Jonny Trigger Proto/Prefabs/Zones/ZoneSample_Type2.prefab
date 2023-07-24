@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333803503272071410}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 26.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,15 +48,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57fc53de3b7f8a459495798f109e9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasJumpCurve: 0
   zoneJumpPathSpline: {fileID: 0}
-  zoneAimPathSpline: {fileID: 8703209233069206251}
   animationToPlay: 
-  jumpSlowMotionTimeScale: 0.07
   jumpCurveSpeed: 17
-  initialWaitTimeBeforeSlowing: 0.2
+  zoneAimPathSpline: {fileID: 8703209233069206251}
   aimAtTransformSpeedOnCurve: 2
+  characterMovementSpeedInNoJumpCurveZoneInSlowMo: 20
+  jumpSlowMotionTimeScale: 0.07
+  fixedDeltaTimeScale: 0.0009
+  initialWaitTimeBeforeSlowing: 0
+  aimCurveEvaluationTimeToEnableAim: 0
   enemiesInZone:
   - {fileID: 5651820011608337978}
+  enableLeftHandIKToAimCurveTarget: 1
+  enableRightHandIKToAimCurveTarget: 1
+  enableHeadIKToAimCurveTarget: 0
 --- !u!1 &2269114369083809860
 GameObject:
   m_ObjectHideFlags: 0
