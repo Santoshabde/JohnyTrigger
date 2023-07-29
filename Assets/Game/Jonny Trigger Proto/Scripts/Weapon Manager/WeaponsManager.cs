@@ -54,7 +54,7 @@ namespace SNGames.JonnyTriggerProto
 
         private void LateUpdate()
         {
-            //RotateGunTowardsTheAimTargetCurvePoint();
+            RotateGunTowardsTheAimTargetCurvePoint();
         }
 
         private void SpawnGun(string gunID)
