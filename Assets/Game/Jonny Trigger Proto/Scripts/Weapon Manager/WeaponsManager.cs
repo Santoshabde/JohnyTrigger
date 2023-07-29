@@ -54,7 +54,7 @@ namespace SNGames.JonnyTriggerProto
 
         private void LateUpdate()
         {
-            RotateGunTowardsTheAimTargetCurvePoint();
+            //RotateGunTowardsTheAimTargetCurvePoint();
         }
 
         private void SpawnGun(string gunID)
@@ -83,10 +83,10 @@ namespace SNGames.JonnyTriggerProto
                 Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
 
                 if (currentZoneCharacterIsIn.GetCurrentZoneData().enableRightHandIKToAimCurveTarget)
-                    currentGun_RH.transform.rotation = Quaternion.Lerp(currentGun_RH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
+                    currentGun_RH.transform.rotation = Quaternion.LookRotation(gunDirectionToFace, Vector3.forward);
 
                 if (currentZoneCharacterIsIn.GetCurrentZoneData().enableLeftHandIKToAimCurveTarget)
-                    currentGun_LH.transform.rotation = Quaternion.Lerp(currentGun_LH.transform.rotation, Quaternion.LookRotation(gunDirectionToFace, Vector3.forward), 1f);
+                    currentGun_LH.transform.rotation = Quaternion.LookRotation(gunDirectionToFace, Vector3.forward);
             }
         }
 
@@ -101,9 +101,15 @@ namespace SNGames.JonnyTriggerProto
             if(isShootFunctionalityEnabled)
             {
                 Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
+                gunDirectionToFace.x = 0;
 
-                //currentGun_LH.OnShoot(gunDirectionToFace);
-                currentGun_RH.OnShoot(gunDirectionToFace);
+                ZoneDataOutput zoneData = currentZoneCharacterIsIn.GetCurrentZoneData();
+
+                if (zoneData.shootFromLeftHand)
+                    currentGun_LH.OnShoot(gunDirectionToFace);
+
+                if (zoneData.shootFromRightHand)
+                    currentGun_RH.OnShoot(gunDirectionToFace);
             }
         }
     }

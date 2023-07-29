@@ -32,7 +32,7 @@ namespace SNGames.JonnyTriggerProto
 
         public override void Exit()
         {
-            
+
         }
 
         public override void Tick(float deltaTime)
@@ -49,8 +49,19 @@ namespace SNGames.JonnyTriggerProto
             //Activating zone - moving toAim curve here
             currentZone.ActivateZone();
 
+            float value = 0;
+            DOTween.To(() => value, x => value = x, 1, 0.1f)
+                .OnUpdate(() =>
+                {
+                    if (zoneDataOutput.enableHeadIKToAimCurveTarget)
+                    {
+                        characterStateController.headIKConstaint.weight = value;
+                        characterStateController.headIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
+                    }
+                });
+
             if (zoneDataOutput.enableLeftHandIKToAimCurveTarget)
-            { 
+            {
                 characterStateController.lefthandChainIkContraint.weight = 1;
                 characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
             }
@@ -59,12 +70,6 @@ namespace SNGames.JonnyTriggerProto
             {
                 characterStateController.righthandChainIkContraint.weight = 1;
                 characterStateController.rightHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
-            }
-
-            if (zoneDataOutput.enableHeadIKToAimCurveTarget)
-            {
-                characterStateController.headIKConstaint.weight = 1;
-                characterStateController.headIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
             }
 
             //Tween the time scale from 1 to desired value
@@ -98,6 +103,8 @@ namespace SNGames.JonnyTriggerProto
             Physics.gravity = new Vector3(0, -9.8f, 0);
 
             OnDecideCharacterShootFunctionality?.Invoke(false, characterStateController.leftHandTransform.position, currentZone);
+
+            characterStateController.SwitchState(new CharacterState_Run(characterStateController, false));
         }
     }
 }

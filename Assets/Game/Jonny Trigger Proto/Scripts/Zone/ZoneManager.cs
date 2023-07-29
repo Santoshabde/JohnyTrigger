@@ -35,6 +35,8 @@ namespace SNGames.JonnyTriggerProto
         [SerializeField] private bool enableLeftHandIKToAimCurveTarget;
         [SerializeField] private bool enableRightHandIKToAimCurveTarget;
         [SerializeField] private bool enableHeadIKToAimCurveTarget;
+        [SerializeField] private bool shootFromLeftHand;
+        [SerializeField] private bool shootFromRightHand;
 
         private Vector3 aimAtPoint;
         private Coroutine aimAtCurveCoroutine;
@@ -54,7 +56,9 @@ namespace SNGames.JonnyTriggerProto
             enableHeadIKToAimCurveTarget = enableHeadIKToAimCurveTarget,
             enableLeftHandIKToAimCurveTarget = enableLeftHandIKToAimCurveTarget,
             enableRightHandIKToAimCurveTarget = enableRightHandIKToAimCurveTarget,
-            characterMovementSpeedInNoJumpCurveZoneInSlowMo = characterMovementSpeedInNoJumpCurveZoneInSlowMo
+            characterMovementSpeedInNoJumpCurveZoneInSlowMo = characterMovementSpeedInNoJumpCurveZoneInSlowMo,
+            shootFromLeftHand = shootFromLeftHand,
+            shootFromRightHand = shootFromRightHand
         };
 
         public Vector3 GetCurrentAimAtPointOnAimAtCurve() => aimAtPoint;
@@ -113,5 +117,7 @@ namespace SNGames.JonnyTriggerProto
         public bool enableRightHandIKToAimCurveTarget;
         public bool enableHeadIKToAimCurveTarget;
         public float characterMovementSpeedInNoJumpCurveZoneInSlowMo;
+        public bool shootFromLeftHand;
+        public bool shootFromRightHand;
     }
 }

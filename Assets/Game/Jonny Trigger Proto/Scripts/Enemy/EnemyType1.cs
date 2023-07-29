@@ -14,7 +14,7 @@ namespace SNGames.JonnyTriggerProto
             float headWeightValue = 0f;
             DOTween.To(() => headWeightValue, x => headWeightValue = x, 1f, 2f)
                 .OnUpdate(() => {
-                    headMultiAimConstraint.weight = headWeightValue;
+                    headMultiAimConstraint.weight = 0;
                 });
 
             float distanceFromRightHandToCharacter = (characterInZone.transform.position - rightHand.transform.position).magnitude;

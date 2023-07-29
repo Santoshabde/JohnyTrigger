@@ -14,6 +14,7 @@ namespace SNGames.JonnyTriggerProto
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("[Physics] Collided with: " + other.name);
             ZoneEnterArea zoneEnterArea = other.GetComponent<ZoneEnterArea>();
             if (zoneEnterArea != null)
             {

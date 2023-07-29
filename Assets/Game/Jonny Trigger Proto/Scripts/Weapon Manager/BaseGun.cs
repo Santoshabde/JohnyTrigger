@@ -12,7 +12,10 @@ namespace SNGames.JonnyTriggerProto
         public virtual void OnShoot(Vector3 bulletShotDirection)
         {
             //Shoot a bullet
-            GameObject bulletGO = Instantiate(bullet.gameObject, gunBulletSpawnPoint.position, gunBulletSpawnPoint.rotation);
+            Vector3 spawnPoint = gunBulletSpawnPoint.position;
+            spawnPoint.x = 0;
+
+            GameObject bulletGO = Instantiate(bullet.gameObject, spawnPoint, Quaternion.identity);
             bulletGO.transform.forward = bulletShotDirection;
         }
     }
