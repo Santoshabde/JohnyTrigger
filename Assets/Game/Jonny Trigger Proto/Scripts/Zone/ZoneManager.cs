@@ -33,6 +33,8 @@ namespace SNGames.JonnyTriggerProto
 
         [Label("Zone Enter character IK settings", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
         [SerializeField] private bool enableLeftHandIKToAimCurveTarget;
+        [SerializeField] private float onZoneEnterIkChainRotationWeight;
+        [SerializeField] private float onZoneEnterIkTipRotationWeight;
         [SerializeField] private bool enableRightHandIKToAimCurveTarget;
         [SerializeField] private bool enableHeadIKToAimCurveTarget;
         [SerializeField] private bool shootFromLeftHand;
@@ -58,7 +60,9 @@ namespace SNGames.JonnyTriggerProto
             enableRightHandIKToAimCurveTarget = enableRightHandIKToAimCurveTarget,
             characterMovementSpeedInNoJumpCurveZoneInSlowMo = characterMovementSpeedInNoJumpCurveZoneInSlowMo,
             shootFromLeftHand = shootFromLeftHand,
-            shootFromRightHand = shootFromRightHand
+            shootFromRightHand = shootFromRightHand,
+            onZoneEnterIkChainRotationWeight = onZoneEnterIkChainRotationWeight,
+            onZoneEnterIkTipRotationWeight = onZoneEnterIkTipRotationWeight
         };
 
         public Vector3 GetCurrentAimAtPointOnAimAtCurve() => aimAtPoint;
@@ -119,5 +123,7 @@ namespace SNGames.JonnyTriggerProto
         public float characterMovementSpeedInNoJumpCurveZoneInSlowMo;
         public bool shootFromLeftHand;
         public bool shootFromRightHand;
+        public float onZoneEnterIkChainRotationWeight;
+        public float onZoneEnterIkTipRotationWeight;
     }
 }

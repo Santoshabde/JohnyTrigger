@@ -63,12 +63,20 @@ namespace SNGames.JonnyTriggerProto
             if (zoneDataOutput.enableLeftHandIKToAimCurveTarget)
             {
                 characterStateController.lefthandChainIkContraint.weight = 1;
+
+                characterStateController.lefthandChainIkContraint.data.tipRotationWeight = zoneDataOutput.onZoneEnterIkTipRotationWeight;
+                characterStateController.lefthandChainIkContraint.data.chainRotationWeight = zoneDataOutput.onZoneEnterIkChainRotationWeight;
+
                 characterStateController.leftHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
             }
 
             if (zoneDataOutput.enableRightHandIKToAimCurveTarget)
             {
                 characterStateController.righthandChainIkContraint.weight = 1;
+
+                characterStateController.righthandChainIkContraint.data.tipRotationWeight = zoneDataOutput.onZoneEnterIkTipRotationWeight;
+                characterStateController.righthandChainIkContraint.data.chainRotationWeight = zoneDataOutput.onZoneEnterIkChainRotationWeight;
+
                 characterStateController.rightHandChainIkTarget.position = currentZone.GetCurrentAimAtPointOnAimAtCurve();
             }
 
