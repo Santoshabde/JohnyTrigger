@@ -16,23 +16,19 @@ namespace SNGames.JonnyTriggerProto
 
     public class BaseEnemy : MonoBehaviour, IDamagable
     {
+        [SerializeField, Disable] private EnemyState enemyState;
         [SerializeField] protected Animator animtor;
-        [SerializeField] protected MultiAimConstraint headMultiAimConstraint;
-        [SerializeField] protected Transform headIKTarget;
-        [SerializeField] protected Transform rightHand;
-        [SerializeField] protected ChainIKConstraint righthandChainIkConstaint;
-        [SerializeField] protected Transform rightHandIKTarget;
-        [SerializeField] protected Transform leftHand;
-        [SerializeField] protected ChainIKConstraint lefthandChainIkConstaint;
-        [SerializeField] protected Transform leftHandIKTarget;
 
-        private void Awake()
+        protected virtual void Awake()
         {
+            enemyState = EnemyState.Idle;
             DisableRagDoll();
         }
 
         public virtual void OnDamage(Rigidbody rigidBodyHit, float damageAmount, Vector3 damageDirection)
         {
+            ParticleEffectsController.Instance.SpawnParticleEffect("Hit_Blood", rigidBodyHit.position, Quaternion.identity);
+            enemyState = EnemyState.Death;
             animtor.enabled = false;
             EnableRagDoll();
             rigidBodyHit.AddForce(damageDirection * 40f, ForceMode.Impulse);
