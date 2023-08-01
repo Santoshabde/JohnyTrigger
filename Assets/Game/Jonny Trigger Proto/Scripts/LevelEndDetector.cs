@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SNGames.CommonModule;
 
 namespace SNGames.JonnyTriggerProto
 {
@@ -12,7 +13,7 @@ namespace SNGames.JonnyTriggerProto
             {
                 if(LevelManager.Instance.IsRegionCompleted(1))
                 {
-                    SNEventsController.TriggerEvent(InGameEvents.ON_REGION_COMPLETED);
+                    SNEventsController<InGameEvents>.TriggerEvent(InGameEvents.ON_REGION_COMPLETED);
                 }
             }
         }

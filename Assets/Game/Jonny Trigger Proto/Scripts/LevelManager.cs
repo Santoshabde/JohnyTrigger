@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SNGames.CommonModule;
 
 namespace SNGames.JonnyTriggerProto
 {
@@ -14,7 +15,7 @@ namespace SNGames.JonnyTriggerProto
 
         private void Awake()
         {
-            SNEventsController.RegisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
+            SNEventsController<InGameEvents>.RegisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
         }
 
         public void LoadRegion(int currentWorld, int currentRegion)
@@ -86,5 +87,11 @@ namespace SNGames.JonnyTriggerProto
         public int RegionNumber;
         public List<ZoneManager> zonesInRegion;
         public GameObject Region;
+    }
+
+    public enum InGameEvents
+    {
+        ON_REGION_COMPLETED,
+        ON_WORLD_COMPLETED
     }
 }
