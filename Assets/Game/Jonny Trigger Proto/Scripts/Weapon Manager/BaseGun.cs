@@ -17,6 +17,9 @@ namespace SNGames.JonnyTriggerProto
 
             GameObject bulletGO = Instantiate(bullet.gameObject, spawnPoint, Quaternion.identity);
             bulletGO.transform.forward = bulletShotDirection;
+
+            GameObject muzzleFlash = ParticleEffectsController.Instance.SpawnParticleEffect("GunMuzzleFlash", gunBulletSpawnPoint.transform.position, gunBulletSpawnPoint.transform.rotation);
+            muzzleFlash.transform.parent = this.transform;
         }
     }
 }

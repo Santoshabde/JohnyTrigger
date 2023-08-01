@@ -7,14 +7,17 @@ public class ParticleEffectsController : SerializeSingleton<ParticleEffectsContr
 {
     [SerializeField] private List<ParticleEffectObject> particleEffects;
 
-    public void SpawnParticleEffect(string particleID, Vector3 position, Quaternion rotation)
+    public GameObject SpawnParticleEffect(string particleID, Vector3 position, Quaternion rotation)
     {
         GameObject particleToSpawn = particleEffects.Find(t => t.particleID == particleID).particleEffect;
 
         if (particleToSpawn != null)
-            Instantiate(particleToSpawn, position, rotation);
+            return Instantiate(particleToSpawn, position, rotation);
         else
+        {
+            return null;
             Debug.LogError("Mentioned particle id not present");
+        }
     }
 }
 

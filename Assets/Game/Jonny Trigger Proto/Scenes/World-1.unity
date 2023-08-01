@@ -8678,6 +8678,8 @@ MonoBehaviour:
   particleEffects:
   - particleID: Hit_Blood
     particleEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
+  - particleID: GunMuzzleFlash
+    particleEffect: {fileID: 100006, guid: 234e5aa95353f0643b0181dc3872cda9, type: 3}
 --- !u!1001 &1623782338
 PrefabInstance:
   m_ObjectHideFlags: 0
