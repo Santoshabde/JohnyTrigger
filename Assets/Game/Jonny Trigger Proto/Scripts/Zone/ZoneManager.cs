@@ -7,6 +7,8 @@ namespace SNGames.JonnyTriggerProto
 {
     public class ZoneManager : MonoBehaviour
     {
+        [SerializeField, Disable] public bool isCompleted; //Exposing to inspector only for Debug purpose
+
         [Help("Zone jump settings are mandotory, only enable if you have jump curve for character", UnityMessageType.Info, Order = -1)]
         [Label("Zone Jump Settings", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
         [SerializeField] 
@@ -90,6 +92,7 @@ namespace SNGames.JonnyTriggerProto
 
         public void OnCharacterEnterInZone(CharacterStateController characterStateController)
         {
+            isCompleted = false;
             currentCharacterInTheZone = characterStateController;
             enemiesInZone.ForEach(enemy => enemy.OnCharacterEnteredTheZone(currentCharacterInTheZone));
         }
@@ -97,6 +100,7 @@ namespace SNGames.JonnyTriggerProto
         public void OnCharacterExitInZone(CharacterStateController characterStateController)
         {
             currentCharacterInTheZone = null;
+            isCompleted = true;
             enemiesInZone.ForEach(enemy => enemy.OnCharacterExitTheZone(characterStateController));
         }
 
