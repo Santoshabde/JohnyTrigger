@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ namespace SNGames.JonnyTriggerProto
         [SerializeField] private int currentRegion; // 1-1, 1-2, 1-3 ---- 1,1,1 - world || 1,2,3 - regions
 
         [SerializeField] private WorldData worldData;
+
+        private void Awake()
+        {
+            SNEventsController.RegisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
+        }
 
         public void LoadRegion(int currentWorld, int currentRegion)
         {
@@ -59,6 +65,11 @@ namespace SNGames.JonnyTriggerProto
             }
 
             return null;
+        }
+
+        private void OnRegionCompleted()
+        {
+            Debug.Log("#san OnRegionCompleted");
         }
     }
 

@@ -12,7 +12,7 @@ namespace SNGames.JonnyTriggerProto
             {
                 if(LevelManager.Instance.IsRegionCompleted(1))
                 {
-                    Time.timeScale = 0;
+                    SNEventsController.TriggerEvent(InGameEvents.ON_REGION_COMPLETED);
                 }
             }
         }
