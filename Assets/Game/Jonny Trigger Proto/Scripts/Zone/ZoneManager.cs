@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
+using SNGames.CommonModule;
+using System.Linq;
 
 namespace SNGames.JonnyTriggerProto
 {
@@ -100,8 +102,19 @@ namespace SNGames.JonnyTriggerProto
         public void OnCharacterExitInZone(CharacterStateController characterStateController)
         {
             currentCharacterInTheZone = null;
-            isCompleted = true;
             enemiesInZone.ForEach(enemy => enemy.OnCharacterExitTheZone(characterStateController));
+
+            if (enemiesInZone.All(enemy => enemy.GetEnemyState() == EnemyState.Death))
+            {
+                isCompleted = true;
+                SNEventsController<InGameEvents>.TriggerEvent(InGameEvents.ON_ZONE_COMPLETION_SUCCESS);
+            }
+            else
+            {
+                isCompleted = false;
+                characterStateController.SwitchState(new CharacterState_Lost(characterStateController));
+                SNEventsController<InGameEvents>.TriggerEvent(InGameEvents.On_ZONE_COMPLETION_FAILED);
+            }
         }
 
         private void OnDrawGizmos()

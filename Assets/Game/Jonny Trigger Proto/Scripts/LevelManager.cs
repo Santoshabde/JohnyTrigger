@@ -18,6 +18,11 @@ namespace SNGames.JonnyTriggerProto
             SNEventsController<InGameEvents>.RegisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
         }
 
+        private void OnDestroy()
+        {
+            SNEventsController<InGameEvents>.DeregisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
+        }
+
         public void LoadRegion(int currentWorld, int currentRegion)
         {
             if (worldData.worldNumber == currentWorld)
@@ -57,6 +62,11 @@ namespace SNGames.JonnyTriggerProto
             return isRegionCompleted;
         }
 
+        public bool IsCurrentRegionCompleted()
+        {
+            return IsRegionCompleted(1);
+        }
+
         public RegionData? GetCurrentRegionData(int currentRegion)
         {
             foreach (var item in worldData.regionData)
@@ -70,7 +80,10 @@ namespace SNGames.JonnyTriggerProto
 
         private void OnRegionCompleted()
         {
-            Debug.Log("#san OnRegionCompleted");
+            //Spawn Confitte
+            Vector3 confitteSpawnPoint = GetCurrentRegionData(1).Value.confettiLocation.position;
+            ParticleEffectsController.Instance.SpawnParticleEffect("WinConfetti", confitteSpawnPoint, Quaternion.Euler(-90, 0, 0));
+
         }
     }
 
@@ -87,11 +100,15 @@ namespace SNGames.JonnyTriggerProto
         public int RegionNumber;
         public List<ZoneManager> zonesInRegion;
         public GameObject Region;
+        public Transform confettiLocation;
     }
 
     public enum InGameEvents
     {
         ON_REGION_COMPLETED,
-        ON_WORLD_COMPLETED
+        ON_WORLD_COMPLETED,
+        ON_REGION_COMPLETION_FAILED,
+        On_ZONE_COMPLETION_FAILED,
+        ON_ZONE_COMPLETION_SUCCESS
     }
 }

@@ -59,5 +59,7 @@ namespace SNGames.JonnyTriggerProto
                 item.isKinematic = false;
             }
         }
+
+        public EnemyState GetEnemyState() => enemyState;
     }
 }

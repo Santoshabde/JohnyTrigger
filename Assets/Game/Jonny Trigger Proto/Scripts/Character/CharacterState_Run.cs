@@ -19,6 +19,8 @@ namespace SNGames.JonnyTriggerProto
 
         public override void Enter()
         {
+            SNEventsController<InGameEvents>.RegisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
+
             if (shouldRollBeforeRun)
             {
                 characterStateController.StartCoroutine(RollAndRun());
@@ -44,6 +46,7 @@ namespace SNGames.JonnyTriggerProto
 
         public override void Exit()
         {
+            SNEventsController<InGameEvents>.DeregisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
             CharacterPhysicsController.OnEnterZone -= OnZoneEnter;
         }
 
@@ -61,5 +64,10 @@ namespace SNGames.JonnyTriggerProto
         }
 
         private float GetCurrentCharacterSpeed() => startedRoll ? 0f : characterStateController.CharacterRunSpeed;
+
+        private void OnRegionCompleted()
+        {
+            characterStateController.SwitchState(new CharacterState_Win(characterStateController));
+        }
     }
 }

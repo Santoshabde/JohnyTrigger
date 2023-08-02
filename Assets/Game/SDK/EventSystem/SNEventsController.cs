@@ -22,6 +22,9 @@ namespace SNGames.CommonModule
 
         public static void TriggerEvent(T eventName)
         {
+            if (!eventsInGame.ContainsKey(eventName))
+                return;
+
             eventsInGame[eventName]?.Invoke();
         }
 
