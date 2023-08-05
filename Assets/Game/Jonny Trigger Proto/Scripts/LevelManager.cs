@@ -17,7 +17,7 @@ namespace SNGames.JonnyTriggerProto
 
         [SerializeField] private WorldData worldData;
 
-        [SerializeField, EditorButton("LoadLevelEditor", "LoadLevel", ButtonActivityType.Everything)] private bool n;
+        [SerializeField, EditorButton("LoadLevelEditor", "LoadLevel", ButtonActivityType.Everything)] private bool isEditorBool;
 
         private void Awake()
         {

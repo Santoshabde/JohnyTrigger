@@ -63,7 +63,7 @@ namespace SNGames.JonnyTriggerProto
                     yield return null;
                 }
 
-                characterStateController.CharacterAnimator.CrossFade("Flip", 0.3f);
+                characterStateController.CharacterAnimator.CrossFade(zoneDataOutput.animationToPlay, 0.3f);
 
                 //Wait for some initial buffer time
                 yield return new WaitForSeconds(zoneDataOutput.initialWaitTimeBeforeSlowing);
