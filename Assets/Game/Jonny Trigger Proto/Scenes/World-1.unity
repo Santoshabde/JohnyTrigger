@@ -6514,6 +6514,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 485961372}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &485961374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+    type: 3}
+  m_PrefabInstance: {fileID: 485961372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57fc53de3b7f8a459495798f109e9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &498152231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15582,16 +15594,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18862322b7748644907298e2e1c5734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWorld: 0
-  currentRegion: 0
+  currentWorld: 1
+  currentRegion: 2
+  characterInGame: {fileID: 91214310236955416}
+  virtualCamera: {fileID: 1676060129}
   worldData:
     worldNumber: 1
     regionData:
     - RegionNumber: 1
       zonesInRegion:
+      - {fileID: 485961374}
+      Region: {fileID: 41052006}
+      confettiLocation: {fileID: 779704440}
+      characterPosition: {x: 0, y: 0.516, z: -9}
+      cameraPosition: {x: 13.05, y: 0.9, z: 2.24}
+    - RegionNumber: 2
+      zonesInRegion:
       - {fileID: 1986039053}
       Region: {fileID: 1647403381}
       confettiLocation: {fileID: 2137081605}
+      characterPosition: {x: -2.04, y: 0.516, z: -9}
+      cameraPosition: {x: 13.05, y: 0.9, z: 2.24}
+  n: 0
 --- !u!1001 &1341716644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25407,6 +25431,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 91214310236955412}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &91214310236955416 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8532804008753660983, guid: 8e0e9922fd4ece940994d0537e22e05a,
+    type: 3}
+  m_PrefabInstance: {fileID: 91214310236955412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e15eea85a401d348aac22045aad57f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &854141228998080081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6004052879551875824, guid: 8e0e9922fd4ece940994d0537e22e05a,

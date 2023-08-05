@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SNGames.CommonModule;
+using Cinemachine;
 
 namespace SNGames.JonnyTriggerProto
 {
@@ -11,11 +12,21 @@ namespace SNGames.JonnyTriggerProto
         [SerializeField] private int currentWorld;
         [SerializeField] private int currentRegion; // 1-1, 1-2, 1-3 ---- 1,1,1 - world || 1,2,3 - regions
 
+        [SerializeField] private CharacterStateController characterInGame;
+        [SerializeField] private Cinemachine.CinemachineVirtualCamera virtualCamera;
+
         [SerializeField] private WorldData worldData;
+
+        [SerializeField, EditorButton("LoadLevelEditor", "LoadLevel", ButtonActivityType.Everything)] private bool n;
 
         private void Awake()
         {
             SNEventsController<InGameEvents>.RegisterEvent(InGameEvents.ON_REGION_COMPLETED, OnRegionCompleted);
+        }
+
+        private void Start()
+        {
+            LoadRegion(currentWorld, currentRegion);
         }
 
         private void OnDestroy()
@@ -25,21 +36,30 @@ namespace SNGames.JonnyTriggerProto
 
         public void LoadRegion(int currentWorld, int currentRegion)
         {
+            //Deactivate all regions
+            worldData.regionData.ForEach(region => region.Region.SetActive(false));
+
+            //Activate current region
             if (worldData.worldNumber == currentWorld)
             {
                 foreach (var region in worldData.regionData)
                 {
                     if (region.RegionNumber == currentRegion)
                     {
+                        //Activate Region
                         region.Region.SetActive(true);
+
+                        //Set character and camera positions
+                        characterInGame.transform.position = region.characterPosition;
+                        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = region.cameraPosition;
                         return;
                     }
                 }
 
-                Debug.LogError("Current Region Doesn't exist");
+                Debug.LogError("[Level Region and World Loading] Current Region Doesn't exist");
             }
 
-            Debug.LogError("Current World Doesn't exist");
+            Debug.LogError("[Level Region and World Loading] Current World Doesn't exist");
         }
 
         public bool IsRegionCompleted(int currentRegion)
@@ -64,7 +84,7 @@ namespace SNGames.JonnyTriggerProto
 
         public bool IsCurrentRegionCompleted()
         {
-            return IsRegionCompleted(1);
+            return IsRegionCompleted(currentRegion);
         }
 
         public RegionData? GetCurrentRegionData(int currentRegion)
@@ -81,10 +101,15 @@ namespace SNGames.JonnyTriggerProto
         private void OnRegionCompleted()
         {
             //Spawn Confitte
-            Vector3 confitteSpawnPoint = GetCurrentRegionData(1).Value.confettiLocation.position;
+            Vector3 confitteSpawnPoint = GetCurrentRegionData(currentRegion).Value.confettiLocation.position;
             ParticleEffectsController.Instance.SpawnParticleEffect("WinConfetti", confitteSpawnPoint, Quaternion.Euler(-90, 0, 0));
-
         }
+
+        private void LoadLevelEditor()
+        {
+            LoadRegion(currentWorld, currentRegion);
+        }
+
     }
 
     [System.Serializable]
@@ -101,6 +126,8 @@ namespace SNGames.JonnyTriggerProto
         public List<ZoneManager> zonesInRegion;
         public GameObject Region;
         public Transform confettiLocation;
+        public Vector3 characterPosition;
+        public Vector3 cameraPosition;
     }
 
     public enum InGameEvents

@@ -499,6 +499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b5bb34a5e8656408bbcd53312b9ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name:
+    sceneReference: {fileID: 102900000, guid: 1afbc7df07b33654fa4ab0035db79672, type: 3}
+    sceneName: 
+    scenePath: 
+    buildIndex: -1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
