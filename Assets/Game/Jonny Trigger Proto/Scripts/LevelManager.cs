@@ -17,7 +17,8 @@ namespace SNGames.JonnyTriggerProto
 
         [SerializeField] private WorldData worldData;
 
-        [SerializeField, EditorButton("LoadLevelEditor", "LoadLevel", ButtonActivityType.Everything)] private bool isEditorBool;
+        [SerializeField, EditorButton("LoadLevelEditor", "LoadLevel", ButtonActivityType.Everything), Disable] private string LoadLevelEditorButton = "LoadLevelEditorButton";
+        [SerializeField, EditorButton("DisableAllRegions", "DisableAllRegions", ButtonActivityType.Everything), Disable] private string DisableAllRegionsButton = "DisableAllRegionsButton";
 
         private void Awake()
         {
@@ -36,8 +37,7 @@ namespace SNGames.JonnyTriggerProto
 
         public void LoadRegion(int currentWorld, int currentRegion)
         {
-            //Deactivate all regions
-            worldData.regionData.ForEach(region => region.Region.SetActive(false));
+            DisableAllRegions();
 
             //Activate current region
             if (worldData.worldNumber == currentWorld)
@@ -110,6 +110,11 @@ namespace SNGames.JonnyTriggerProto
             LoadRegion(currentWorld, currentRegion);
         }
 
+        private void DisableAllRegions()
+        {
+            //Deactivate all regions
+            worldData.regionData.ForEach(region => region.Region.SetActive(false));
+        }
     }
 
     [System.Serializable]
