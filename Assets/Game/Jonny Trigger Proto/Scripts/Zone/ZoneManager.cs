@@ -9,8 +9,6 @@ namespace SNGames.JonnyTriggerProto
 {
     public class ZoneManager : MonoBehaviour
     {
-        [SerializeField, Disable] public bool isCompleted; //Exposing to inspector only for Debug purpose
-
         [Help("Zone jump settings are mandotory, only enable if you have jump curve for character", UnityMessageType.Info, Order = -1)]
         [Label("Zone Jump Settings", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
         [SerializeField] 
@@ -44,10 +42,17 @@ namespace SNGames.JonnyTriggerProto
         [SerializeField] private bool shootFromLeftHand;
         [SerializeField] private bool shootFromRightHand;
 
+        [Label("InGame Zone Other Settings", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
+        [SerializeField] private int bulletCount;
+
         private Vector3 aimAtPoint;
         private Coroutine aimAtCurveCoroutine;
         private float aimCurveEvalutationTime = 0;
         private CharacterStateController currentCharacterInTheZone;
+
+        [Label("DEBUG ZONE PROPERTIES --- ONLY FOR DEBUG", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
+        [SerializeField, Disable] public bool isCompleted;
+        [SerializeField, Disable] private int currentBulletCountInZone;
 
         public ZoneDataOutput GetCurrentZoneData() => new ZoneDataOutput()
         {
@@ -66,12 +71,18 @@ namespace SNGames.JonnyTriggerProto
             shootFromLeftHand = shootFromLeftHand,
             shootFromRightHand = shootFromRightHand,
             onZoneEnterIkChainRotationWeight = onZoneEnterIkChainRotationWeight,
-            onZoneEnterIkTipRotationWeight = onZoneEnterIkTipRotationWeight
+            onZoneEnterIkTipRotationWeight = onZoneEnterIkTipRotationWeight,
+            currentBulletCountInZone = currentBulletCountInZone
         };
 
         public Vector3 GetCurrentAimAtPointOnAimAtCurve() => aimAtPoint;
 
         public float GetCurrentAimCurveEvalutationTime() => aimCurveEvalutationTime;
+        
+        public void DecreaseZoneCurrentBulletCount()
+        {
+            currentBulletCountInZone -= 1;
+        }
 
         public void ActivateZone()
         {
@@ -97,6 +108,7 @@ namespace SNGames.JonnyTriggerProto
             isCompleted = false;
             currentCharacterInTheZone = characterStateController;
             enemiesInZone.ForEach(enemy => enemy.OnCharacterEnteredTheZone(currentCharacterInTheZone));
+            currentBulletCountInZone = bulletCount;
         }
 
         public void OnCharacterExitInZone(CharacterStateController characterStateController)
@@ -142,5 +154,6 @@ namespace SNGames.JonnyTriggerProto
         public bool shootFromRightHand;
         public float onZoneEnterIkChainRotationWeight;
         public float onZoneEnterIkTipRotationWeight;
+        public int currentBulletCountInZone;
     }
 }

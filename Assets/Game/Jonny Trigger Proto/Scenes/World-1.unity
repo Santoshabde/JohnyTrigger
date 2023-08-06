@@ -4402,6 +4402,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
+      propertyPath: bulletCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
       propertyPath: hasJumpCurve
       value: 1
       objectReference: {fileID: 0}
@@ -10322,6 +10327,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 750729797}
     m_Modifications:
+    - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: bulletCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
       propertyPath: hasJumpCurve
@@ -23157,7 +23167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWorld: 1
-  currentRegion: 3
+  currentRegion: 2
   characterInGame: {fileID: 91214310236955416}
   virtualCamera: {fileID: 1676060129}
   worldData:
@@ -33344,6 +33354,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1041697424}
     m_Modifications:
+    - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
+        type: 3}
+      propertyPath: bulletCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2225330618073312251, guid: 3aad729659552c34eb8e8dc2d4a3b788,
         type: 3}
       propertyPath: hasJumpCurve

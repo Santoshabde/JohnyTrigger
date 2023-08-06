@@ -15,6 +15,7 @@ namespace SNGames.JonnyTriggerProto
 
         private BaseGun currentGun_LH;
         private BaseGun currentGun_RH;
+
         private bool isShootFunctionalityEnabled;
         private Vector3 gunAimStartPoint;
         private Vector3 gunAimTargetPoint;
@@ -98,12 +99,15 @@ namespace SNGames.JonnyTriggerProto
 
         public void OnNotify(InputData data)
         {
-            if(isShootFunctionalityEnabled)
+            ZoneDataOutput zoneData = currentZoneCharacterIsIn.GetCurrentZoneData();
+
+            if (isShootFunctionalityEnabled
+                && zoneData.currentBulletCountInZone > 0)
             {
                 Vector3 gunDirectionToFace = (gunAimTargetPoint - gunAimStartPoint).normalized;
                 gunDirectionToFace.x = 0;
 
-                ZoneDataOutput zoneData = currentZoneCharacterIsIn.GetCurrentZoneData();
+                currentZoneCharacterIsIn.DecreaseZoneCurrentBulletCount();
 
                 if (zoneData.shootFromLeftHand)
                     currentGun_LH.OnShoot(gunDirectionToFace);
