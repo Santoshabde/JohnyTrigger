@@ -72,7 +72,8 @@ namespace SNGames.JonnyTriggerProto
             shootFromRightHand = shootFromRightHand,
             onZoneEnterIkChainRotationWeight = onZoneEnterIkChainRotationWeight,
             onZoneEnterIkTipRotationWeight = onZoneEnterIkTipRotationWeight,
-            currentBulletCountInZone = currentBulletCountInZone
+            currentBulletCountInZone = currentBulletCountInZone,
+            bulletCount = bulletCount
         };
 
         public Vector3 GetCurrentAimAtPointOnAimAtCurve() => aimAtPoint;
@@ -154,6 +155,7 @@ namespace SNGames.JonnyTriggerProto
         public bool shootFromRightHand;
         public float onZoneEnterIkChainRotationWeight;
         public float onZoneEnterIkTipRotationWeight;
+        public int bulletCount;
         public int currentBulletCountInZone;
     }
 }

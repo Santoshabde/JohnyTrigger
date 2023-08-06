@@ -21,6 +21,8 @@ namespace SNGames.JonnyTriggerProto
         private Vector3 gunAimTargetPoint;
         private ZoneManager currentZoneCharacterIsIn;
 
+        public static Action OnBulletShot;
+
         private void Start()
         {
             CharacterState_BattleMode_WithJumpCurve.OnDecideCharacterShootFunctionality += OnDecideCharacterShootFunctionality;
@@ -110,10 +112,16 @@ namespace SNGames.JonnyTriggerProto
                 currentZoneCharacterIsIn.DecreaseZoneCurrentBulletCount();
 
                 if (zoneData.shootFromLeftHand)
+                {
                     currentGun_LH.OnShoot(gunDirectionToFace);
+                    OnBulletShot?.Invoke();
+                }
 
                 if (zoneData.shootFromRightHand)
+                {
                     currentGun_RH.OnShoot(gunDirectionToFace);
+                    OnBulletShot?.Invoke();
+                }
             }
         }
     }
