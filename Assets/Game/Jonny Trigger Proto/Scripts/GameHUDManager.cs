@@ -13,7 +13,7 @@ namespace SNGames.JonnyTriggerProto
         [SerializeField] private GameObject bulletsHolder;
         [SerializeField] private GameObject bulletIconPrefab;
 
-        private List<GameObject> bulletImagesSpawnedInZone;
+        public List<GameObject> bulletImagesSpawnedInZone;
         private ZoneManager currentZoneCharacterIn;
 
         private void Awake()
@@ -26,16 +26,16 @@ namespace SNGames.JonnyTriggerProto
         private void OnExitZone(ZoneManager zone)
         {
             currentZoneCharacterIn = null;
-            bulletsHolder.SetActive(false);
-
             if (bulletImagesSpawnedInZone != null)
             {
                 foreach (var item in bulletImagesSpawnedInZone)
                 {
-                    Destroy(item.gameObject);
+                    Debug.Log("#san Came here 1");
+                    Destroy(item);
                 }
             }
 
+            bulletsHolder.SetActive(false);
             bulletImagesSpawnedInZone.Clear();
             bulletImagesSpawnedInZone = null;
         }
@@ -58,7 +58,6 @@ namespace SNGames.JonnyTriggerProto
         private void OnBulletShot()
         {
             bulletImagesSpawnedInZone[bulletImagesSpawnedInZone.Count - 1].GetComponent<Image>().DOFade(0.08f, 0.1f);
-            bulletImagesSpawnedInZone.RemoveAt(bulletImagesSpawnedInZone.Count - 1);
         }
     }
 }

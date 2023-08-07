@@ -23670,7 +23670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18862322b7748644907298e2e1c5734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableDebug: 1
+  enableDebug: 0
   currentWorld: 1
   currentRegion: 2
   LoadLevelEditorButton: LoadLevelEditorButton
