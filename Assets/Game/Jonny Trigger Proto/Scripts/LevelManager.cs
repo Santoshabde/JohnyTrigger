@@ -64,10 +64,13 @@ namespace SNGames.JonnyTriggerProto
                     if (region.RegionNumber == currentRegion)
                     {
                         //Activate Region
+                        characterInGame.gameObject.SetActive(false);
                         region.Region.SetActive(true);
+                        SNEventsController<InGameEvents>.TriggerEvent(InGameEvents.ON_NEWREGION_LOADED);
 
                         //Set character and camera positions
-                        characterInGame.transform.position = region.characterPosition;
+                        characterInGame.transform.position = region.characterPosition + new Vector3(0, 1, 0);
+                        characterInGame.gameObject.SetActive(true);
                         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = region.cameraPosition;
                         characterInGame.SwitchState(new CharacterState_Run(characterInGame, false));
                         return;
@@ -122,10 +125,37 @@ namespace SNGames.JonnyTriggerProto
             Vector3 confitteSpawnPoint = GetCurrentRegionData(currentRegion).Value.confettiLocation.position;
             ParticleEffectsController.Instance.SpawnParticleEffect("WinConfetti", confitteSpawnPoint, Quaternion.Euler(-90, 0, 0));
 
-            currentRegion += 1;
+            StartCoroutine(StartNextRegionIfPresent());
+            IEnumerator StartNextRegionIfPresent()
+            {
+                yield return new WaitForSeconds(4f);
 
-            if (!enableDebug)
-                localStoredData.gameSavePoint = new GameSavePoint() { worldNumber = currentWorld, regionNumber = currentRegion };
+                 //Next region calculation
+                 currentRegion += 1;
+
+                //Check if next region is present in world data?
+                bool isNextRegionPresent = false;
+                foreach (var item in worldData.regionData)
+                {
+                    if (item.RegionNumber == currentRegion)
+                    {
+                        isNextRegionPresent = true;
+                        if (!enableDebug)
+                        {
+                            localStoredData.gameSavePoint = new GameSavePoint() { worldNumber = currentWorld, regionNumber = currentRegion };
+                            LoadRegion(currentWorld, currentRegion);
+                        }
+
+                        break;
+                    }
+                }
+
+                //What if next regio is not present? It means end of all regions in the world
+                if (!isNextRegionPresent)
+                {
+                    Debug.Log("[Level Manager] End of world!! All regions in the world completed");
+                }
+            }
         }
 
         private void LoadLevelEditor()
@@ -166,6 +196,7 @@ namespace SNGames.JonnyTriggerProto
     public enum InGameEvents
     {
         ON_REGION_COMPLETED,
+        ON_NEWREGION_LOADED,
         ON_WORLD_COMPLETED,
         ON_REGION_COMPLETION_FAILED,
         On_ZONE_COMPLETION_FAILED,
