@@ -11,7 +11,6 @@ namespace SNGames.JonnyTriggerProto
         {
             if (other.GetComponent<CharacterStateController>())
             {
-                Debug.Log("#san: " + other.name);
                 if(LevelManager.Instance.IsCurrentRegionCompleted())
                 {
                     SNEventsController<InGameEvents>.TriggerEvent(InGameEvents.ON_REGION_COMPLETED);

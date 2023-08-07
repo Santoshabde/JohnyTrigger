@@ -9,16 +9,23 @@ namespace SNGames.JonnyTriggerProto
 {
     public class LevelManager : SerializeSingleton<LevelManager>
     {
-        [SerializeField] private int currentWorld;
-        [SerializeField] private int currentRegion; // 1-1, 1-2, 1-3 ---- 1,1,1 - world || 1,2,3 - regions
-
-        [SerializeField] private CharacterStateController characterInGame;
-        [SerializeField] private Cinemachine.CinemachineVirtualCamera virtualCamera;
-
-        [SerializeField] private WorldData worldData;
-
+        [Label("Debu Area", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
+        [SerializeField] private bool enableDebug;
+        [SerializeField, DisableIf(nameof(enableDebug), false, Comparison = UnityComparisonMethod.Equal)] private int currentWorld;
+        [SerializeField, DisableIf(nameof(enableDebug), false, Comparison = UnityComparisonMethod.Equal)] private int currentRegion; // 1-1, 1-2, 1-3 ---- 1,1,1 - world || 1,2,3 - regions
         [SerializeField, EditorButton("LoadLevelEditor", "LoadLevel", ButtonActivityType.Everything), Disable] private string LoadLevelEditorButton = "LoadLevelEditorButton";
         [SerializeField, EditorButton("DisableAllRegions", "DisableAllRegions", ButtonActivityType.Everything), Disable] private string DisableAllRegionsButton = "DisableAllRegionsButton";
+        [SerializeField, EditorButton("DeleteAllPlayerPrefsInGame", "DeleteAllPlayerPrefsInGame", ButtonActivityType.Everything), Disable] private string DeleteAllPlayerPrefs = "DeleteAllPlayerPrefs";
+   
+        [Label("")]
+        [Label("")]
+
+        [Label("Level Data To Fill", skinStyle: SkinStyle.Round, Alignment = TextAnchor.MiddleCenter)]
+        [SerializeField] private CharacterStateController characterInGame;
+        [SerializeField] private Cinemachine.CinemachineVirtualCamera virtualCamera;
+        [SerializeField] private WorldData worldData;
+
+        private LocalStorage localStoredData = null;
 
         private void Awake()
         {
@@ -27,6 +34,16 @@ namespace SNGames.JonnyTriggerProto
 
         private void Start()
         {
+            localStoredData = (LocalStorage)InGameServiceBinder.GetService<LocalStorage>();
+            if (localStoredData.gameSavePoint == null)
+                localStoredData.gameSavePoint = new GameSavePoint() { regionNumber = 1, worldNumber = 1 };
+
+            if (!enableDebug)
+            {
+                currentWorld = localStoredData.gameSavePoint.worldNumber;
+                currentRegion = localStoredData.gameSavePoint.regionNumber;
+            }
+
             LoadRegion(currentWorld, currentRegion);
         }
 
@@ -52,6 +69,7 @@ namespace SNGames.JonnyTriggerProto
                         //Set character and camera positions
                         characterInGame.transform.position = region.characterPosition;
                         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = region.cameraPosition;
+                        characterInGame.SwitchState(new CharacterState_Run(characterInGame, false));
                         return;
                     }
                 }
@@ -103,6 +121,11 @@ namespace SNGames.JonnyTriggerProto
             //Spawn Confitte
             Vector3 confitteSpawnPoint = GetCurrentRegionData(currentRegion).Value.confettiLocation.position;
             ParticleEffectsController.Instance.SpawnParticleEffect("WinConfetti", confitteSpawnPoint, Quaternion.Euler(-90, 0, 0));
+
+            currentRegion += 1;
+
+            if (!enableDebug)
+                localStoredData.gameSavePoint = new GameSavePoint() { worldNumber = currentWorld, regionNumber = currentRegion };
         }
 
         private void LoadLevelEditor()
@@ -114,6 +137,11 @@ namespace SNGames.JonnyTriggerProto
         {
             //Deactivate all regions
             worldData.regionData.ForEach(region => region.Region.SetActive(false));
+        }
+
+        private void DeleteAllPlayerPrefsInGame()
+        {
+            PlayerPrefs.DeleteAll();
         }
     }
 

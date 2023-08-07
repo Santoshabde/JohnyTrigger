@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameServiceBinder : ServiceBinder
+namespace SNGames.JonnyTriggerProto
 {
-    protected override void BindAllServicesInGame()
+    public class InGameServiceBinder : ServiceBinder
     {
-         
+        protected override void BindAllServicesInGame()
+        {
+            BindService(new LocalStorage());
+        }
     }
 }
