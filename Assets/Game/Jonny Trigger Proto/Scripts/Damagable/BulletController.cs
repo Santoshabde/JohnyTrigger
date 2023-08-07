@@ -24,7 +24,7 @@ namespace SNGames.JonnyTriggerProto
             IDamagable damagableComponent = other.GetComponentInParent<IDamagable>();
             if (damagableComponent != null)
             {
-                damagableComponent.OnDamage(other.GetComponent<Rigidbody>(), 0.01f, transform.forward);
+                damagableComponent.OnDamage(other.GetComponent<Rigidbody>(), 40f, transform.forward);
                 Destroy(this.gameObject);
             }
         }

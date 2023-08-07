@@ -31,7 +31,7 @@ namespace SNGames.JonnyTriggerProto
             enemyState = EnemyState.Death;
             animtor.enabled = false;
             EnableRagDoll();
-            rigidBodyHit.AddForce(damageDirection * 40f, ForceMode.Impulse);
+            rigidBodyHit.AddForce(damageDirection * damageAmount, ForceMode.Impulse);
         }
 
         public virtual void OnCharacterEnteredTheZone(CharacterStateController characterInZone)
