@@ -9,7 +9,8 @@ namespace SNGames.JonnyTriggerProto
     {
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            if(Input.GetKeyDown(KeyCode.Mouse0)
+                || Input.GetMouseButtonDown(0))
             {
                 NotifyAllObservers(new InputData() { inputID = "Shoot" });
             }
